@@ -27,6 +27,3 @@ endif()
 
 target_include_directories(sdl2 INTERFACE ${SDL2_INCLUDE_DIRS})
 target_link_libraries(sdl2 INTERFACE ${SDL2_LIBRARIES})
-
-message(STATUS "[sdl2] include dir ${SDL2_INCLUDE_DIRS}")
-message(STATUS "[sdl2] libs ${SDL2_LIBRARIES}")
