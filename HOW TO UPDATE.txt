@@ -22,4 +22,16 @@ This requires these steps when updating:
         # General includes
         include_directories(${SDL2_BINARY_DIR}/include ${SDL2_SOURCE_DIR}/include/SDL2)
 
-    
+    - Change the path for file removals
+    In SDL 2.0.12 this was line 2166, it should now look like this:
+
+        foreach(_FNAME ${BIN_INCLUDE_FILES})
+            get_filename_component(_INCNAME ${_FNAME} NAME)
+            list(REMOVE_ITEM INCLUDE_FILES ${SDL2_SOURCE_DIR}/include/SDL2/${_INCNAME})
+        endforeach()
+
+    - Change the path for the SDL_Config.h generation
+    In SDL 2.0.12 this was line 1902f, it should now look like this:
+
+        configure_file("${SDL2_SOURCE_DIR}/include/SDL2/SDL_config.h.cmake"
+            "${SDL2_BINARY_DIR}/include/SDL2/SDL_config.h")

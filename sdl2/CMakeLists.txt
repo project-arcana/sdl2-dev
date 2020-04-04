@@ -1899,8 +1899,8 @@ endif()
 #   endif()
 # endif()
 
-configure_file("${SDL2_SOURCE_DIR}/include/SDL_config.h.cmake"
-  "${SDL2_BINARY_DIR}/include/SDL_config.h")
+configure_file("${SDL2_SOURCE_DIR}/include/SDL2/SDL_config.h.cmake"
+  "${SDL2_BINARY_DIR}/include/SDL2/SDL_config.h")
 
 # Prepare the flags and remove duplicates
 if(EXTRA_LDFLAGS)
@@ -2163,7 +2163,7 @@ file(GLOB INCLUDE_FILES ${SDL2_SOURCE_DIR}/include/*.h)
 file(GLOB BIN_INCLUDE_FILES ${SDL2_BINARY_DIR}/include/*.h)
 foreach(_FNAME ${BIN_INCLUDE_FILES})
   get_filename_component(_INCNAME ${_FNAME} NAME)
-  list(REMOVE_ITEM INCLUDE_FILES ${SDL2_SOURCE_DIR}/include/${_INCNAME})
+  list(REMOVE_ITEM INCLUDE_FILES ${SDL2_SOURCE_DIR}/include/SDL2/${_INCNAME})
 endforeach()
 list(APPEND INCLUDE_FILES ${BIN_INCLUDE_FILES})
 install(FILES ${INCLUDE_FILES} DESTINATION include/SDL2)
