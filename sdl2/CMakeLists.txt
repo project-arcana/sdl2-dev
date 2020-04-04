@@ -1900,7 +1900,7 @@ endif()
 # endif()
 
 configure_file("${SDL2_SOURCE_DIR}/include/SDL2/SDL_config.h.cmake"
-  "${SDL2_BINARY_DIR}/include/SDL2/SDL_config.h")
+  "${SDL2_BINARY_DIR}/include/SDL_config.h")
 
 # Prepare the flags and remove duplicates
 if(EXTRA_LDFLAGS)
