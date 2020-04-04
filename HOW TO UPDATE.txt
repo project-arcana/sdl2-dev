@@ -16,13 +16,13 @@ This requires these steps when updating:
 2. Move all files in sdl2/include/ to a new subfolder sdl2/include/SDL2
 3. Adjust the SDL2 CMakeLists.txt (NOT the top level one in this folder) as follows:
 
-    - Point the general include to the subfolder instead of just ${SDL2_SOURCE_DIR}/include/
+    3.1 Point the general include to the subfolder instead of just ${SDL2_SOURCE_DIR}/include/
     In SDL 2.0.12 this was line 267, it should now look like this:
     
         # General includes
         include_directories(${SDL2_BINARY_DIR}/include ${SDL2_SOURCE_DIR}/include/SDL2)
 
-    - Change the path for file removals
+    3.2 Change the path for file removals
     In SDL 2.0.12 this was line 2166, it should now look like this:
 
         foreach(_FNAME ${BIN_INCLUDE_FILES})
@@ -30,13 +30,13 @@ This requires these steps when updating:
             list(REMOVE_ITEM INCLUDE_FILES ${SDL2_SOURCE_DIR}/include/SDL2/${_INCNAME})
         endforeach()
 
-    - Change the path for the SDL_Config.h generation. Make sure to ONLY change the first path here!
+    3.3 Change the path for the SDL_Config.h generation. Make sure to ONLY change the first path here!
     In SDL 2.0.12 this was line 1902f, it should now look like this:
 
         configure_file("${SDL2_SOURCE_DIR}/include/SDL2/SDL_config.h.cmake"
             "${SDL2_BINARY_DIR}/include/SDL_config.h")
 
-4. Fix non-relative includes in sdl2/src (of the form #include "../../include/")
+4. Fix non-relative includes in sdl2/src (of the form #include "../../include/*" to "../../include/SDL2/*")
 
     1. src/events/SDL_touch_c.h:22
     2. src/events/scancodes_*.h
