@@ -1,8 +1,9 @@
+# How to Update SDL2
 
 In our SDL2 usage, we require the includes to be prefixed SDL2/
 (#include <SDL2/SDL.h> instead of just <SDL.h>)
 
-this is required because we use three different deployments of SDL2:
+This is required because we use three different deployments of SDL2:
 1. Binaries (Windows)
 2. find_package (Linux)
 3. Build from source (CI)
@@ -10,7 +11,7 @@ this is required because we use three different deployments of SDL2:
 SDL2's source natively does not have this prefix, but the distributions installed by linux package managers do.
 To make 3. compatible with the rest, we move all headers in include/ to include/SDL2/
 
-This requires these steps when updating:
+## Steps when Updating
 
 1. Completely replace the contents of sdl2/ with the new files
 2. Move all files in sdl2/include/ to a new subfolder sdl2/include/SDL2
@@ -36,7 +37,7 @@ This requires these steps when updating:
         configure_file("${SDL2_SOURCE_DIR}/include/SDL2/SDL_config.h.cmake"
             "${SDL2_BINARY_DIR}/include/SDL_config.h")
 
-4. Fix non-relative includes in sdl2/src (of the form #include "../../include/*" to "../../include/SDL2/*")
+4. Fix non-relative includes in sdl2/src (of the form `#include "../../include/*"` to `"../../include/SDL2/*"`)
 
     1. src/events/SDL_touch_c.h:22
     2. src/events/scancodes_*.h
