@@ -1,0 +1,25 @@
+
+In our SDL2 usage, we require the includes to be prefixed SDL2/
+(#include <SDL2/SDL.h> instead of just <SDL.h>)
+
+this is required because we use three different deployments of SDL2:
+1. Binaries (Windows)
+2. find_package (Linux)
+3. Build from source (CI)
+
+SDL2's source natively does not have this prefix, but the distributions installed by linux package managers do.
+To make 3. compatible with the rest, we move all headers in include/ to include/SDL2/
+
+This requires these steps when updating:
+
+1. Completely replace the contents of sdl2/ with the new files
+2. Move all files in sdl2/include/ to a new subfolder sdl2/include/SDL2
+3. Adjust the SDL2 CMakeLists.txt (NOT the top level one in this folder) as follows:
+
+    - Point the general include to the subfolder instead of just ${SDL2_SOURCE_DIR}/include/
+    In SDL 2.0.12 this was line 267, it should now look like this:
+    
+        # General includes
+        include_directories(${SDL2_BINARY_DIR}/include ${SDL2_SOURCE_DIR}/include/SDL2)
+
+    

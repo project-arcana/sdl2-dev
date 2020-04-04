@@ -10,7 +10,8 @@ macro(arc_sdl2_from_source)
 
     add_library(sdl2 INTERFACE)
     target_link_libraries(sdl2 INTERFACE SDL2)
-    target_include_directories(sdl2 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+    target_include_directories(sdl2 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/sdl2/include)
+   # add_library(sdl2 ALIAS SDL2)
 
 endmacro()
 
@@ -28,7 +29,7 @@ else()
         # prevent SDL from defining main as SDL_main, see https://wiki.libsdl.org/SDL_SetMainReady
         target_compile_definitions(sdl2 INTERFACE SDL_MAIN_HANDLED)
 
-        target_include_directories(sdl2 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+        target_include_directories(sdl2 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/sdl2/include)
 
         # Support both 32 and 64 bit builds
         if (${CMAKE_SIZEOF_VOID_P} MATCHES 8)
