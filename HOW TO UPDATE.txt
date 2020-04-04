@@ -39,3 +39,4 @@ This requires these steps when updating:
 4. Fix non-relative includes in sdl2/src (of the form #include "../../include/")
 
     1. src/events/SDL_touch_c.h:22
+    2. src/events/scancodes_*.h
