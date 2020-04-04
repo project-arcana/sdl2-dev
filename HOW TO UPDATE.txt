@@ -35,3 +35,7 @@ This requires these steps when updating:
 
         configure_file("${SDL2_SOURCE_DIR}/include/SDL2/SDL_config.h.cmake"
             "${SDL2_BINARY_DIR}/include/SDL_config.h")
+
+4. Fix non-relative includes in sdl2/src (of the form #include "../../include/")
+
+    1. src/events/SDL_touch_c.h:22
