@@ -11,7 +11,7 @@ macro(arc_sdl2_from_source)
     add_library(sdl2 INTERFACE)
     target_link_libraries(sdl2 INTERFACE SDL2)
     target_include_directories(sdl2 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/sdl2/include)
-   # add_library(sdl2 ALIAS SDL2)
+    message(STATUS "[sdl2-dev] building SDL2 from source")
 
 endmacro()
 
@@ -49,8 +49,8 @@ else()
 
         if (SDL2_FOUND) # if found, use system version
 
-            add_library(sdl2 SHARED IMPORTED GLOBAL)
-            
+            add_library(sdl2 INTERFACE)
+
             # prevent SDL from defining main as SDL_main, see https://wiki.libsdl.org/SDL_SetMainReady
             target_compile_definitions(sdl2 INTERFACE SDL_MAIN_HANDLED)
             target_include_directories(sdl2 INTERFACE ${SDL2_INCLUDE_DIRS})
