@@ -42,6 +42,10 @@ else()
 
         # copy the dll to the runtime output folder now
         file(COPY "${ARC_SDL2_DEV_DLL_PATH}" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+        # copy to config subfolders for good measure
+        file(COPY "${ARC_SDL2_DEV_DLL_PATH}" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Debug")
+        file(COPY "${ARC_SDL2_DEV_DLL_PATH}" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Release")
+        file(COPY "${ARC_SDL2_DEV_DLL_PATH}" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/RelWithDebInfo")
 
     else() # try to use system package
 
