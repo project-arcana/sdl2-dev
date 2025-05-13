@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.13...3.31)
 project(SDL2)
 
 option(ARC_SDL2_FROM_SOURCE "if true, builds SDL2 from source instead of using system or prebuilt version" OFF)
